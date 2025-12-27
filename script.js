@@ -1,15 +1,15 @@
 (() => {
   const ORIGIN_PROJECT_URL = "https://github.com/Spu7Nix/obamify";
-  const CREATOR_GITHUB_URL = "https://github.com/benzenism";
+  const CREATOR_GITHUB_URL = "https://github.com/Benzenism/Speakify";
   const CREATOR_YOUTUBE_URL = "https://youtube.com/@Benzenism";
 
   document.getElementById("originBtn").href = ORIGIN_PROJECT_URL;
   document.getElementById("creatorGitBtn").href = CREATOR_GITHUB_URL;
   document.getElementById("creatorYouBtn").href = CREATOR_YOUTUBE_URL;
 
-  const DEFAULT_SRC_IMG = "/Speakify/Ner.jpg";
-  const DEFAULT_TGT_IMG = "/Speakify/Speaki.png";
-  const DEFAULT_MP3     = "/Speakify/dontNerSpeaki.mp3";
+  const DEFAULT_SRC_IMG = "ner.jpg";
+  const DEFAULT_TGT_IMG = "speaki.png";
+  const DEFAULT_MP3     = "dontNerSpeaki.mp3";
 
   const N = 256;
   const PULL = 15.0;
@@ -583,3 +583,4 @@ void main(){ outColor = v_color; }`;
   });
 
 })();
+
