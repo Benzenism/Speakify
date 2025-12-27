@@ -1,7 +1,7 @@
 (() => {
   const ORIGIN_PROJECT_URL = "https://github.com/Spu7Nix/obamify";
   const CREATOR_GITHUB_URL = "https://github.com/Benzenism/Speakify";
-  const CREATOR_YOUTUBE_URL = "https://youtube.com/@Benzenism";
+  const CREATOR_YOUTUBE_URL = "https://www.youtube.com/watch?v=yBihj5P3pWU";
 
   document.getElementById("originBtn").href = ORIGIN_PROJECT_URL;
   document.getElementById("creatorGitBtn").href = CREATOR_GITHUB_URL;
@@ -583,4 +583,5 @@ void main(){ outColor = v_color; }`;
   });
 
 })();
+
 
