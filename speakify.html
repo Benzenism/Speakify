@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <title>Speakify</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --bg-url: url('wallpaper.jpg');
+    }
+
+    body{
+      background-image: var(--bg-url);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    .glass {
+      background: rgba(0, 0, 0, 0.562);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    #glCanvas { touch-action: none; }
+  </style>
+</head>
+
+<body class="min-h-screen text-slate-100">
+  <div class="mx-auto max-w-5xl px-4 pt-10 pb-28 md:pb-24">
+    <div class="glass rounded-3xl ring-1 ring-white/10 shadow-[0_30px_120px_rgba(0,0,0,0.55)] overflow-hidden">
+      <div class="p-4 md:p-6 flex flex-col gap-4">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-white">
+        Speakify
+        </h1>
+
+        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <details class="group">
+            <summary class="cursor-pointer select-none list-none inline-flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2 text-sm text-slate-200 ring-1 ring-white/10 hover:bg-white/10">
+              <span class="font-medium">Change Files</span>
+              <span class="ml-1 text-slate-400 group-open:rotate-180 transition">▾</span>
+            </summary>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <label class="relative inline-flex items-center gap-2 rounded-xl bg-slate-800/60 px-3 py-2 text-sm ring-1 ring-white/10 hover:bg-slate-800 cursor-pointer">
+                <span class="text-slate-200">Source</span>
+                <span class="text-slate-400 text-xs">(.jpg/.png)</span>
+                <input id="srcFile" type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+              </label>
+
+              <label class="relative inline-flex items-center gap-2 rounded-xl bg-slate-800/60 px-3 py-2 text-sm ring-1 ring-white/10 hover:bg-slate-800 cursor-pointer">
+                <span class="text-slate-200">Target</span>
+                <span class="text-slate-400 text-xs">(.png/.jpg)</span>
+                <input id="tgtFile" type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+              </label>
+
+              <label class="relative inline-flex items-center gap-2 rounded-xl bg-slate-800/60 px-3 py-2 text-sm ring-1 ring-white/10 hover:bg-slate-800 cursor-pointer">
+                <span class="text-slate-200">Sound</span>
+                <span class="text-slate-400 text-xs">(.mp3)</span>
+                <input id="mp3File" type="file" accept="audio/mpeg,audio/mp3" class="absolute inset-0 opacity-0 cursor-pointer" />
+              </label>
+            </div>
+          </details>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="runBtn"
+              class="rounded-xl bg-red-500/90 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-red-500/20 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-300/60">
+              Start
+            </button>
+
+            <button id="stopBtn"
+              class="rounded-xl bg-yellow-500/90 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-yellow-500/20 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-300/60">
+              Reset
+            </button>
+
+            <button id="downloadBtn" disabled
+              class="rounded-xl bg-green-500/80 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-green-500/20 hover:bg-green-500 disabled:opacity-40 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-green-300/60">
+              Down
+            </button>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black">
+          <div class="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/[0.08] via-transparent to-transparent"></div>
+          <canvas id="glCanvas" class="block w-full aspect-square"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="fixed inset-x-0 bottom-0 z-50">
+    <div class="glass ring-1 ring-white/10">
+      <div class="mx-auto max-w-5xl px-4 py-3">
+        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div class="text-xs text-slate-200/90 leading-relaxed">
+            <div class="font-medium text-slate-100">This application is a derivative work utilizing original intellectual property owned by EPID Games Inc.</div>
+            <div class="text-slate-200/80">
+                The base images and assets remain the exclusive property of EPID Games Inc.
+            </div>
+            </div>
+
+          <div class="flex flex-wrap gap-2">
+            <a id="originBtn" href="#" target="_blank" rel="noopener noreferrer"
+               class="rounded-xl bg-white/5 px-3 py-2 text-sm font-semibold ring-1 ring-white/10 hover:bg-white/10">
+              Original Project
+            </a>
+
+            <a id="creatorGitBtn" href="#" target="_blank" rel="noopener noreferrer"
+               class="rounded-xl bg-white/5 px-3 py-2 text-sm font-semibold ring-1 ring-white/10 hover:bg-white/10">
+              GitHub
+            </a>
+
+            <a id="creatorYouBtn" href="#" target="_blank" rel="noopener noreferrer"
+               class="rounded-xl bg-white/5 px-3 py-2 text-sm font-semibold ring-1 ring-white/10 hover:bg-white/10">
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-[env(safe-area-inset-bottom)] glass"></div>
+  </footer>
+
+  <audio id="doneAudio" preload="auto"></audio>
+  <canvas id="srcC" class="hidden"></canvas>
+  <canvas id="tgtC" class="hidden"></canvas>
+
+<script src="script.js"></script>
+
+</body>
+</html>
