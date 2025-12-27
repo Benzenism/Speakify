@@ -7,9 +7,9 @@
   document.getElementById("creatorGitBtn").href = CREATOR_GITHUB_URL;
   document.getElementById("creatorYouBtn").href = CREATOR_YOUTUBE_URL;
 
-  const DEFAULT_SRC_IMG = "Ner.jpg";
-  const DEFAULT_TGT_IMG = "Speaki.png";
-  const DEFAULT_MP3     = "dontNerSpeaki.mp3";
+  const DEFAULT_SRC_IMG = "/Speakify/Ner.jpg";
+  const DEFAULT_TGT_IMG = "/Speakify/Speaki.png";
+  const DEFAULT_MP3     = "/Speakify/dontNerSpeaki.mp3";
 
   const N = 256;
   const PULL = 15.0;
@@ -581,4 +581,5 @@ void main(){ outColor = v_color; }`;
     console.error(e);
     alert("File Location Error");
   });
+
 })();
