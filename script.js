@@ -16,7 +16,7 @@
   const SWIRL = 10.0;
   const STEPS_PER_FRAME = 2;
   const POINT_MUL = 1.0;
-  const EPS = 0.0001;
+  const EPS = 0.001;
   const NEED_STREAK = 30;
 
   const SPEED_START = 0.01;
@@ -583,6 +583,7 @@ void main(){ outColor = v_color; }`;
   });
 
 })();
+
 
 
 
